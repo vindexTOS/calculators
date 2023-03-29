@@ -7,8 +7,8 @@ const CompaunedIntrest = () => {
   const [interestRate, setIntrestRate] = useState<number>(0)
   const [result, setResult] = useState<number>(0)
   const calulateResult = () => {
-    const n = 1 // assuming annual compounding
-    const r = interestRate / 100 // convert interest rate to decimal
+    const n = 1
+    const r = interestRate / 100
     const t = years
 
     const principal = initialInvestment
