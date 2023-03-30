@@ -39,10 +39,14 @@ type State = {
   alchoholDay: boolean
   smokeYes: boolean
   smokeNo: boolean
+  points: number
+  age: number
+  bmi: number
 }
 
 type Action = {
   type: string
+  payload: number
 }
 
 const LifeExpectancy = () => {
@@ -58,7 +62,13 @@ const LifeExpectancy = () => {
     ageAndPHysiqueDiv: ` w-[500px]  flex items-center justify-center gap-3 relative`,
     rangeInput: ` w-[500px]`,
   }
-
+  const [points, setPoints] = useState<number>(50)
+  const [age, setAge] = useState<number>(0)
+  const [weight, setWeight] = useState<number>(0)
+  const [height, setHeight] = useState<number>(0)
+  const [feet, setFeet] = useState<number>(0)
+  const [inch, setInch] = useState<number>(0)
+  const [ImperialToMetric, setImperialToMetric] = useState<boolean>(false)
   const reducer = (state: State, action: Action) => {
     switch (action.type) {
       case 'male':
@@ -66,12 +76,14 @@ const LifeExpectancy = () => {
           ...state,
           male: state.male = true,
           female: state.female = false,
+          points: state.points - 5,
         }
       case 'female':
         return {
           ...state,
           female: state.female = true,
           male: state.male = false,
+          points: state.points + 5,
         }
       case 'white':
         return {
@@ -79,6 +91,7 @@ const LifeExpectancy = () => {
           white: state.white = true,
           black: state.black = false,
           asian: state.asian = false,
+          points: state.points + 5,
         }
       case 'black':
         return {
@@ -86,6 +99,7 @@ const LifeExpectancy = () => {
           white: state.white = false,
           black: state.black = true,
           asian: state.asian = false,
+          points: state.points - 2,
         }
       case 'asian':
         return {
@@ -93,6 +107,7 @@ const LifeExpectancy = () => {
           white: state.white = false,
           black: state.black = false,
           asian: state.asian = true,
+          points: state.points + 7,
         }
       case 'noSchool':
         return {
@@ -101,6 +116,7 @@ const LifeExpectancy = () => {
           highSchool: state.highSchool = false,
           someCollege: state.someCollege = false,
           college: state.college = false,
+          state: state.points - 5,
         }
       case 'highSchool':
         return {
@@ -109,6 +125,7 @@ const LifeExpectancy = () => {
           highSchool: state.highSchool = true,
           someCollege: state.someCollege = false,
           college: state.college = false,
+          points: state.points + 0,
         }
       case 'someCollege':
         return {
@@ -117,6 +134,7 @@ const LifeExpectancy = () => {
           highSchool: state.highSchool = false,
           someCollege: state.someCollege = true,
           college: state.college = false,
+          points: state.points + 2,
         }
       case 'college':
         return {
@@ -125,6 +143,7 @@ const LifeExpectancy = () => {
           highSchool: state.highSchool = false,
           someCollege: state.someCollege = false,
           college: state.college = true,
+          points: state.points + 5,
         }
       case 'married':
         return {
@@ -134,6 +153,7 @@ const LifeExpectancy = () => {
           divorced: state.divorced = false,
           never: state.never = false,
           seperated: state.seperated = false,
+          points: state.points + 5,
         }
       case 'widowed':
         return {
@@ -143,6 +163,7 @@ const LifeExpectancy = () => {
           divorced: state.divorced = false,
           never: state.never = false,
           seperated: state.seperated = false,
+          points: state.points - 5,
         }
       case 'divorced':
         return {
@@ -152,6 +173,7 @@ const LifeExpectancy = () => {
           divorced: state.divorced = true,
           never: state.never = false,
           seperated: state.seperated = false,
+          points: state.points - 5,
         }
       case 'never':
         return {
@@ -161,6 +183,7 @@ const LifeExpectancy = () => {
           divorced: state.divorced = false,
           never: state.never = true,
           seperated: state.seperated = false,
+          points: state.points + 0,
         }
       case 'seperated':
         return {
@@ -170,18 +193,21 @@ const LifeExpectancy = () => {
           divorced: state.divorced = false,
           never: state.never = false,
           seperated: state.seperated = true,
+          points: state.points - 2,
         }
       case 'working':
         return {
           ...state,
           working: state.working = true,
           retired: state.retired = false,
+          points: state.points - 2,
         }
       case 'retired':
         return {
           ...state,
           working: state.working = false,
           retired: state.retired = true,
+          points: state.points + 5,
         }
       case 'low':
         return {
@@ -190,6 +216,7 @@ const LifeExpectancy = () => {
           midIncome: state.midIncome = false,
           highIncome: state.highIncome = false,
           topEarner: state.topEarner = false,
+          points: state.points - 2,
         }
       case 'mid':
         return {
@@ -198,6 +225,7 @@ const LifeExpectancy = () => {
           midIncome: state.midIncome = true,
           highIncome: state.highIncome = false,
           topEarner: state.topEarner = false,
+          points: state.points + 5,
         }
       case 'high':
         return {
@@ -206,6 +234,7 @@ const LifeExpectancy = () => {
           midIncome: state.midIncome = false,
           highIncome: state.highIncome = true,
           topEarner: state.topEarner = false,
+          points: state.points + 10,
         }
       case 'top':
         return {
@@ -214,6 +243,7 @@ const LifeExpectancy = () => {
           midIncome: state.midIncome = false,
           highIncome: state.highIncome = false,
           topEarner: state.topEarner = true,
+          points: state.points + 15,
         }
       case 'neverWorkout':
         return {
@@ -223,6 +253,7 @@ const LifeExpectancy = () => {
           oneTwo: state.oneTwo = false,
           threeFoure: state.threeFoure = false,
           fivePluse: state.fivePluse = false,
+          points: state.points - 5,
         }
       case 'rarely':
         return {
@@ -232,6 +263,7 @@ const LifeExpectancy = () => {
           oneTwo: state.oneTwo = false,
           threeFoure: state.threeFoure = false,
           fivePluse: state.fivePluse = false,
+          points: state.points + 0,
         }
       case 'oneTwo':
         return {
@@ -241,6 +273,7 @@ const LifeExpectancy = () => {
           oneTwo: state.oneTwo = true,
           threeFoure: state.threeFoure = false,
           fivePluse: state.fivePluse = false,
+          points: state.points + 15,
         }
 
       case 'threeFoure':
@@ -251,6 +284,7 @@ const LifeExpectancy = () => {
           oneTwo: state.oneTwo = false,
           threeFoure: state.threeFoure = true,
           fivePluse: state.fivePluse = false,
+          points: state.points + 15,
         }
 
       case 'fivePluse':
@@ -261,6 +295,7 @@ const LifeExpectancy = () => {
           oneTwo: state.oneTwo = false,
           threeFoure: state.threeFoure = false,
           fivePluse: state.fivePluse = true,
+          points: state.points + 10,
         }
       case 'poorHealth':
         return {
@@ -270,6 +305,7 @@ const LifeExpectancy = () => {
           goodHealth: state.goodHealth = false,
           veryGoodHealth: state.veryGoodHealth = false,
           excellentHealth: state.excellentHealth = false,
+          points: state.points - 5,
         }
       case 'fairHealth':
         return {
@@ -279,6 +315,7 @@ const LifeExpectancy = () => {
           goodHealth: state.goodHealth = false,
           veryGoodHealth: state.veryGoodHealth = false,
           excellentHealth: state.excellentHealth = false,
+          points: state.points + 0,
         }
       case 'goodHealth':
         return {
@@ -288,6 +325,7 @@ const LifeExpectancy = () => {
           goodHealth: state.goodHealth = true,
           veryGoodHealth: state.veryGoodHealth = false,
           excellentHealth: state.excellentHealth = false,
+          points: state.points + 5,
         }
       case 'veryGoodHealth':
         return {
@@ -297,6 +335,7 @@ const LifeExpectancy = () => {
           goodHealth: state.goodHealth = false,
           veryGoodHealth: state.veryGoodHealth = true,
           excellentHealth: state.excellentHealth = false,
+          points: state.points + 10,
         }
       case 'excellentHealth':
         return {
@@ -306,18 +345,21 @@ const LifeExpectancy = () => {
           goodHealth: state.goodHealth = false,
           veryGoodHealth: state.veryGoodHealth = false,
           excellentHealth: state.excellentHealth = true,
+          points: state.points + 15,
         }
       case 'diabetesYes':
         return {
           ...state,
           diabetesYes: state.diabetesYes = true,
           diabetesNo: state.diabetesNo = false,
+          points: state.points - 10,
         }
       case 'diabetesNo':
         return {
           ...state,
           diabetesYes: state.diabetesYes = false,
           diabetesNo: state.diabetesNo = true,
+          points: state.points + 5,
         }
       case 'alchoholZero':
         return {
@@ -325,6 +367,7 @@ const LifeExpectancy = () => {
           alchoholZero: state.alchoholZero = true,
           alchoholWeek: state.alchoholWeek = false,
           alchoholDay: state.alchoholDay = false,
+          points: state.points + 10,
         }
       case 'alchoholWeek':
         return {
@@ -332,6 +375,7 @@ const LifeExpectancy = () => {
           alchoholZero: state.alchoholZero = false,
           alchoholWeek: state.alchoholWeek = true,
           alchoholDay: state.alchoholDay = false,
+          points: state.points - 15,
         }
       case 'alchoholDay':
         return {
@@ -339,18 +383,61 @@ const LifeExpectancy = () => {
           alchoholZero: state.alchoholZero = false,
           alchoholWeek: state.alchoholWeek = false,
           alchoholDay: state.alchoholDay = true,
+          points: state.points - 25,
         }
       case 'smokeYes':
         return {
           ...state,
           smokeYes: state.smokeYes = true,
           smokeNo: state.smokeNo = false,
+          points: state.points - 15,
         }
       case 'smokeNo':
         return {
           ...state,
           smokeYes: state.smokeYes = false,
           smokeNo: state.smokeNo = true,
+          points: state.points + 10,
+        }
+      case 'age':
+        return {
+          ...state,
+          age: state.age = action.payload,
+          points:
+            action.payload <= 85
+              ? state.points - 20
+              : action.payload <= 70
+              ? state.points - 15
+              : action.payload <= 60
+              ? state.points - 10
+              : action.payload <= 50
+              ? state.points - 5
+              : action.payload <= 40
+              ? state.points - 2
+              : action.payload <= 30
+              ? state.points + 0
+              : action.payload <= 20
+              ? state.points + 5
+              : action.payload <= 10
+              ? state.points + 10
+              : state.points + 0,
+        }
+      case 'bmi':
+        return {
+          ...state,
+          bmi: state.bmi = action.payload,
+          points:
+            action.payload >= 40
+              ? state.points - 20
+              : action.payload >= 30
+              ? state.points - 15
+              : action.payload >= 25
+              ? state.points - 10
+              : action.payload <= 25
+              ? state.points + 10
+              : action.payload <= 17
+              ? state.points - 5
+              : state.points + 0,
         }
 
       default:
@@ -396,6 +483,9 @@ const LifeExpectancy = () => {
     alchoholDay: false,
     smokeYes: false,
     smokeNo: false,
+    points: 50,
+    age: 0,
+    bmi: 0,
   })
   type CheckBoxProps = {
     type: string
@@ -406,7 +496,12 @@ const LifeExpectancy = () => {
     return (
       <div className={style.labelInputDiv}>
         <span
-          onClick={() => dispatch({ type: type })}
+          onClick={() =>
+            dispatch({
+              type: type,
+              payload: 0,
+            })
+          }
           className={style.checkBox}
         >
           {state && <AiFillCheckCircle className={style.checKIcon} />}
@@ -416,20 +511,12 @@ const LifeExpectancy = () => {
     )
   }
 
-  const [age, setAge] = useState<number>(0)
-  const [weight, setWeight] = useState<number>(0)
-  const [height, setHeight] = useState<number>(0)
-  const [feet, setFeet] = useState<number>(0)
-  const [inch, setInch] = useState<number>(0)
-  const [ImperialToMetric, setImperialToMetric] = useState<boolean>(false)
-
   React.useEffect(() => {
     let lb = weight * 2.2
 
     if (ImperialToMetric) {
       setWeight(lb)
     }
-    console.log(lb)
   }, [ImperialToMetric])
 
   React.useEffect(() => {
@@ -439,6 +526,27 @@ const LifeExpectancy = () => {
     setFeet(feet)
     setInch(inches)
   }, [ImperialToMetric, height])
+
+  React.useEffect(() => {}, [ImperialToMetric, height, weight])
+
+  React.useEffect(() => {}, [])
+  const [bmi, setBmi] = useState<number>(0)
+  const Result = () => {
+    if (ImperialToMetric) {
+      let inch = height / 2.54
+      let bmi = (weight / (inch * inch)) * 703
+      dispatch({ type: 'bmi', payload: Number(bmi.toFixed(2)) })
+    } else {
+      let lb = weight * 2.2
+      let ft = height / 2.54
+      let bmi = (lb / (ft * ft)) * 703
+      dispatch({ type: 'bmi', payload: Number(bmi.toFixed(2)) })
+    }
+    dispatch({ type: 'age', payload: Number(age) })
+
+    console.log(state.points)
+  }
+
   return (
     <section className={style.section}>
       <div className={style.genderDiv}>
@@ -639,6 +747,7 @@ const LifeExpectancy = () => {
         <CheckBox type={'smokeYes'} title="Yes" state={state.smokeYes} />
         <CheckBox type={'smokeNo'} title="No" state={state.smokeNo} />
       </div>
+      <button onClick={() => Result()}>Result</button>
     </section>
   )
 }
