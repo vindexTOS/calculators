@@ -16,13 +16,13 @@ type Action = {
 const LifeExpectancy = () => {
   const style = {
     section: `w-[100%] h-[100vh] bg-gray-600 flex flex-col gap-10 items-center justify-center`,
-    header: `px-10 py-3  bg-blue-500 text-[2rem] w-[12rem] text-white`,
-    genderDiv: `  w-[70%]  flex  gap-5 items-center justify-start`,
+    header: ` py-3 px-5 bg-blue-500 text-[2rem] w-[12rem] text-white`,
+    genderDiv: `  w-[500px]  flex  gap-5 items-center justify-start`,
     labelInputDiv: ` flex flex-col items-center justify-center  `,
     checkBox: `w-[5rem] bg-white h-[5rem] rounded-[50%] relative flex items-center justify-center cursor-pointer `,
     checKIcon: `absolute text-blue-500 w-[6rem] h-[6rem] cursor-pointer`,
-    raceDiv: ` w-[70%]   flex  gap-5 items-center justify-start`,
-    ageAndPHysiqueDiv: ` w-[70%]  flex items-center justify-center gap-5`,
+    raceDiv: `  w-[500px]  flex  gap-5 items-center justify-start`,
+    ageAndPHysiqueDiv: ` w-[500px]  flex items-center justify-center gap-3 relative`,
     rangeInput: ` w-[500px]`,
   }
 
@@ -61,6 +61,7 @@ const LifeExpectancy = () => {
           black: state.black = false,
           asian: state.asian = true,
         }
+
       default:
         return state
     }
@@ -74,6 +75,29 @@ const LifeExpectancy = () => {
     asian: false,
   })
 
+  const [age, setAge] = useState<number>(0)
+  const [weight, setWeight] = useState<number>(0)
+  const [height, setHeight] = useState<number>(0)
+  const [feet, setFeet] = useState<number>(0)
+  const [inch, setInch] = useState<number>(0)
+  const [ImperialToMetric, setImperialToMetric] = useState<boolean>(false)
+
+  React.useEffect(() => {
+    let lb = weight * 2.2
+
+    if (ImperialToMetric) {
+      setWeight(lb)
+    }
+    console.log(lb)
+  }, [ImperialToMetric])
+
+  React.useEffect(() => {
+    const totalInches = height / 2.54
+    const feet = Math.floor(totalInches / 12)
+    const inches = Math.round(totalInches % 12)
+    setFeet(feet)
+    setInch(inches)
+  }, [ImperialToMetric, height])
   return (
     <section className={style.section}>
       <div className={style.genderDiv}>
@@ -127,11 +151,60 @@ const LifeExpectancy = () => {
           <label>Asian</label>
         </div>
       </div>
+
       <div className={style.labelInputDiv}>
         <h1>Age & Physique</h1>
-        <div className={style.ageAndPHysiqueDiv}>
-          <h1 className={style.header}>Age: </h1>
-          <input className={style.rangeInput} type="range" min={1} max={120} />
+        <span
+          onClick={() => setImperialToMetric(!ImperialToMetric)}
+          className="cursor-pointer"
+        >
+          KG TO LB
+        </span>
+        <div className="flex flex-col gap-10">
+          <div className={style.ageAndPHysiqueDiv}>
+            <h1 className={style.header}>Age: </h1>
+            <input
+              className={style.rangeInput}
+              type="range"
+              min={1}
+              max={85}
+              value={age}
+              onChange={(e) => setAge(Number(e.target.value))}
+            />
+            <p className=" ml-[35rem] absolute text-white font-bold text-[1.2rem]">
+              {age}
+            </p>
+          </div>
+          <div className={style.ageAndPHysiqueDiv}>
+            <h1 className={style.header}>Weight: </h1>
+            <input
+              className={style.rangeInput}
+              type="range"
+              min={ImperialToMetric ? 74 : 34}
+              max={ImperialToMetric ? 660 : 300}
+              value={weight.toFixed(0)}
+              onChange={(e) => setWeight(Number(e.target.value))}
+            />
+            <p className=" ml-[35rem] absolute text-white font-bold text-[1.2rem]">
+              {weight}
+              {ImperialToMetric ? 'Lb' : 'Kg'}
+            </p>
+          </div>
+          <div className={style.ageAndPHysiqueDiv}>
+            <h1 className={style.header}>Height: </h1>
+            <input
+              className={style.rangeInput}
+              type="range"
+              min={50}
+              max={230}
+              value={height}
+              onChange={(e) => setHeight(Number(e.target.value))}
+            />
+            <p className=" ml-[35rem] absolute text-white font-bold text-[1.2rem]">
+              {ImperialToMetric ? `${feet}'${inch}` : height}
+              {ImperialToMetric ? 'FT' : 'CM'}
+            </p>
+          </div>
         </div>
       </div>
     </section>
