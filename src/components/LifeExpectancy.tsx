@@ -156,9 +156,18 @@ const LifeExpectancy = () => {
         <h1>Age & Physique</h1>
         <span
           onClick={() => setImperialToMetric(!ImperialToMetric)}
-          className="cursor-pointer"
+          className={`cursor-pointer flex w-[5rem] border-2  rounded-[20px]  ${
+            ImperialToMetric ? 'flex items-end justify-end' : 'flex items-strt'
+          }`}
         >
-          KG TO LB
+          <div
+            className={`w-[2.5rem] flex items-center justify-center h-[1rem] bg-orange-400 rounded-[20px] `}
+          >
+            {' '}
+            <p className="absolute text-[12px] text-white">
+              {ImperialToMetric ? 'USA' : 'Metric'}{' '}
+            </p>
+          </div>
         </span>
         <div className="flex flex-col gap-10">
           <div className={style.ageAndPHysiqueDiv}>
