@@ -1,7 +1,8 @@
-import React, { useState, useReducer, Reducer, Dispatch, FC } from 'react'
+import React, { useState, FC, useRef } from 'react'
 import { AiFillCheckCircle } from 'react-icons/ai'
 import { UseCalcContext } from './context'
 import Human from './lifeExpectancyComponents/Human'
+import Results from './lifeExpectancyComponents/Results'
 const LifeExpectancy = () => {
   const {
     state,
@@ -20,7 +21,7 @@ const LifeExpectancy = () => {
     setImperialToMetric,
   } = UseCalcContext()
   const style = {
-    section: `w-[100%] h-[100%] bg-gray-600 flex flex-col gap-10 items-center justify-center`,
+    section: `w-[100%] h-[100%] bg-gray-600 flex flex-col gap-10 items-center justify-center pb-10`,
     header: ` py-3 px-5   text-[2rem] w-[12rem] h-[10rem]  text-white`,
     rangeHeader: `py-3 px-5   text-[2rem] w-[12rem]  text-white `,
     genderDiv: `  w-[500px]  flex  gap-5 items-center justify-start`,
@@ -37,6 +38,8 @@ const LifeExpectancy = () => {
     title: string
     state: boolean
   }
+
+  const resutlRef = useRef(null)
   const CheckBox: FC<CheckBoxProps> = ({ type, title, state }) => {
     return (
       <div className={style.labelInputDiv}>
@@ -55,6 +58,7 @@ const LifeExpectancy = () => {
       </div>
     )
   }
+  const [resultShow, setResultShow] = useState<boolean>(false)
 
   React.useEffect(() => {
     let lb = weight * 2.2
@@ -74,7 +78,8 @@ const LifeExpectancy = () => {
   React.useEffect(() => {
     dispatch({ type: 'points', payload: age })
   }, [age])
-  const [ageScore, setAgeScore] = useState<string>('')
+  const [btnDisabled, setBtnDisabled] = useState<boolean>(false)
+  const [agePoints, setAgePoints] = useState<number>(0)
   const Result = () => {
     if (ImperialToMetric) {
       let inch = height / 2.54
@@ -88,9 +93,15 @@ const LifeExpectancy = () => {
     }
     dispatch({ type: 'age', payload: Number(age) })
 
-    console.log(state.points)
+    setResultShow(!resultShow)
+    setBtnDisabled(true)
+    setAgePoints(state.points)
   }
-
+  React.useEffect(() => {
+    const element = (resutlRef.current as unknown) as HTMLDivElement
+    element?.scrollIntoView({ behavior: 'smooth' })
+    element?.scrollIntoView({ behavior: 'smooth' })
+  }, [Result])
   return (
     <section className={style.section}>
       <div className={style.genderDiv}>
@@ -292,7 +303,14 @@ const LifeExpectancy = () => {
         <CheckBox type={'smokeNo'} title="No" state={state.smokeNo} />
       </div>
       <Human />
-      <button onClick={() => Result()}>Result</button>
+      <button
+        disabled={btnDisabled}
+        className="w-[70%] p-10  bg-blue-300 text-[3rem] text-white hover:bg-blue-400 border-2"
+        onClick={() => Result()}
+      >
+        Result
+      </button>
+      {resultShow && <Results resutlRef={resutlRef} points={agePoints} />}
     </section>
   )
 }

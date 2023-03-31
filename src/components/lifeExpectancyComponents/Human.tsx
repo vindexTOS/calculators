@@ -13,7 +13,7 @@ const Human = () => {
     ImperialToMetric,
   } = UseCalcContext()
   const style = {
-    section: ` w-[100%] h-[1000px]  flex flex-col  items-center justify-center gap-2`,
+    section: ` w-[100%] h-[600px]  flex flex-col  items-center justify-center gap-2`,
     summeryDiv: ` flex  items-center justify-between px-5  py-3 gap-5  w-[70%] border-2 text-white text-[1.4rem ] `,
     artDiv: `  w-[70%] flex     justify-between gap-[6rem] `,
     humanDiv: `border-2  relative py-5 w-[500px] h-[100%] flex `,

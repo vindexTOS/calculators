@@ -6,7 +6,7 @@ import React, {
   Reducer,
 } from 'react'
 
-type State = {
+export type  State = {
   male: boolean
   female: boolean
   white: boolean
@@ -21,24 +21,29 @@ type State = {
   divorced: boolean
   never: boolean
   seperated: boolean
+
   working: boolean
-  retired: boolean
+  retired: boolean   //
+     //
   lowIncome: boolean
   midIncome: boolean
   highIncome: boolean
   topEarner: boolean
+
   neverWorkout: boolean
   rarely: boolean
   oneTwo: boolean
   threeFoure: boolean
   fivePluse: boolean
+  
   poorHealth: boolean
   fairHealth: boolean
   goodHealth: boolean
   veryGoodHealth: boolean
   excellentHealth: boolean
   diabetesNo: boolean
-  diabetesYes: boolean
+  diabetesYes: boolean 
+   
   alchoholZero: boolean
   alchoholWeek: boolean
   alchoholDay: boolean
