@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  user-select: none;
+}
+
 input[type='range'] {
   -webkit-appearance: none;
   background-color: rgb(255, 204, 0);

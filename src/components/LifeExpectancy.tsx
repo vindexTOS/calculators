@@ -21,7 +21,7 @@ const LifeExpectancy = () => {
     setImperialToMetric,
   } = UseCalcContext()
   const style = {
-    section: `w-[100%]  h-[100%] bg-gray-600 max_md:gap-5   flex flex-col gap-10 items-center justify-center pb-10 overflow-x-hiddens`,
+    section: `w-[100%]  h-[100%] bg-gray-600 max_md:gap-5   flex flex-col gap-10 items-center justify-center pb-10 overflow-x-hiddens  pt-20`,
     header: ` py-3 px-5   max_Xll:text-[1.3rem] max_md:text-[1rem] text-[2rem] w-[12rem] h-[10rem]  text-white`,
     rangeHeader: `py-3 px-5  max_Xll:text-[1.3rem]  text-[2rem] w-[12rem]  text-white `,
     genderDiv: `  w-[500px]  max_md:gap-4 max_md:mr-[9rem] max_md:w-[50%]  max_md:w-[250px] flex  gap-5 items-center justify-start max_md:justify-start max_md:items-start   `,
