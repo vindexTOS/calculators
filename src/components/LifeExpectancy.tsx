@@ -21,16 +21,16 @@ const LifeExpectancy = () => {
     setImperialToMetric,
   } = UseCalcContext()
   const style = {
-    section: `w-[100%] h-[100%] bg-gray-600 flex flex-col gap-10 items-center justify-center pb-10`,
-    header: ` py-3 px-5   text-[2rem] w-[12rem] h-[10rem]  text-white`,
-    rangeHeader: `py-3 px-5   text-[2rem] w-[12rem]  text-white `,
-    genderDiv: `  w-[500px]  flex  gap-5 items-center justify-start`,
-    labelInputDiv: ` flex flex-col items-center justify-center  gap-5 `,
-    checkBox: `w-[5rem] bg-white h-[5rem] rounded-[50%] relative flex items-center justify-center cursor-pointer `,
-    checKIcon: `absolute text-blue-500 w-[6rem] h-[6rem] cursor-pointer`,
-    raceDiv: `  w-[500px]  flex  gap-5 items-center justify-start`,
-    ageAndPHysiqueDiv: ` w-[500px]  flex items-center justify-center gap-3 relative`,
-    rangeInput: ` w-[500px]`,
+    section: `w-[100%]  h-[100%] bg-gray-600 max_md:gap-5   flex flex-col gap-10 items-center justify-center pb-10 overflow-x-hiddens`,
+    header: ` py-3 px-5   max_Xll:text-[1.3rem] max_md:text-[1rem] text-[2rem] w-[12rem] h-[10rem]  text-white`,
+    rangeHeader: `py-3 px-5  max_Xll:text-[1.3rem]  text-[2rem] w-[12rem]  text-white `,
+    genderDiv: `  w-[500px]  max_md:gap-4 max_md:mr-[9rem] max_md:w-[50%]  max_md:w-[250px] flex  gap-5 items-center justify-start max_md:justify-start max_md:items-start   `,
+    labelInputDiv: ` flex flex-col items-center justify-center  gap-5  max_md:gap-2  `,
+    checkBox: `w-[5rem] bg-white h-[5rem]  max_Xll:w-[2rem] max_Xll:h-[2rem] max_md:w-[1rem]  max_md:h-[1rem] rounded-[50%] relative flex items-center justify-center cursor-pointer `,
+    checKIcon: `absolute text-blue-500 w-[6rem] h-[6rem]  max_Xll:w-[2rem] max_Xll:h-[2rem cursor-pointer`,
+    raceDiv: `  w-[500px] max_md:w-[50%] max_md:mr-[9rem]  max_md:w-[250px] flex  gap-5 items-center justify-start`,
+    ageAndPHysiqueDiv: ` w-[500px] max_Xll:gap-0 max_Xll:w-[400px]  max_md:w-[300px] flex items-center justify-center gap-3 relative`,
+    rangeInput: ` w-[500px] max_Xll:w-[300px] max_md:mr-10`,
   }
 
   type CheckBoxProps = {
@@ -54,7 +54,9 @@ const LifeExpectancy = () => {
         >
           {state && <AiFillCheckCircle className={style.checKIcon} />}
         </span>
-        <label className="h-[5rem] text-center text-white ">{title}</label>
+        <label className="h-[5rem] text-center text-white max_md:text-[9px] ">
+          {title}
+        </label>
       </div>
     )
   }
@@ -79,7 +81,7 @@ const LifeExpectancy = () => {
     dispatch({ type: 'points', payload: age })
   }, [age])
   const [btnDisabled, setBtnDisabled] = useState<boolean>(false)
-  const [agePoints, setAgePoints] = useState<number>(0)
+  const [agePoints, setAgePoints] = useState<string>('')
   const Result = () => {
     if (ImperialToMetric) {
       let inch = height / 2.54
@@ -95,7 +97,11 @@ const LifeExpectancy = () => {
 
     setResultShow(!resultShow)
     setBtnDisabled(true)
-    setAgePoints(state.points)
+    const ageCheck =
+      state.points <= age
+        ? 'the fact that you are still alive is nothing short of a miracle'
+        : state.points
+    setAgePoints(String(ageCheck))
   }
   React.useEffect(() => {
     const element = (resutlRef.current as unknown) as HTMLDivElement
@@ -147,7 +153,7 @@ const LifeExpectancy = () => {
               value={age}
               onChange={(e) => setAge(Number(e.target.value))}
             />
-            <p className=" ml-[35rem] absolute text-white font-bold text-[1.2rem]">
+            <p className=" ml-[35rem] absolute text-white max_md:mr-[17rem] font-bold text-[1.2rem]">
               {age}
             </p>
           </div>
@@ -161,7 +167,7 @@ const LifeExpectancy = () => {
               value={weight?.toFixed(2)}
               onChange={(e) => setWeight(Number(e.target.value))}
             />
-            <p className=" ml-[35rem] absolute text-white font-bold text-[1.2rem]">
+            <p className=" ml-[35rem] absolute text-white max_md:mr-[17rem] font-bold text-[1.2rem]">
               {weight}
               {ImperialToMetric ? 'Lb' : 'Kg'}
             </p>
@@ -176,7 +182,7 @@ const LifeExpectancy = () => {
               value={height}
               onChange={(e) => setHeight(Number(e.target.value))}
             />
-            <p className=" ml-[35rem] absolute text-white font-bold text-[1.2rem]">
+            <p className=" ml-[35rem] absolute text-white max_md:mr-[17rem] font-bold text-[1.2rem]">
               {ImperialToMetric ? `${feet}'${inch}` : height}
               {ImperialToMetric ? 'FT' : 'CM'}
             </p>
@@ -305,7 +311,7 @@ const LifeExpectancy = () => {
       <Human />
       <button
         disabled={btnDisabled}
-        className="w-[70%] p-10  bg-blue-300 text-[3rem] text-white hover:bg-blue-400 border-2"
+        className="w-[70%] p-10 max_md:w-[100%]   bg-blue-300 text-[3rem] text-white hover:bg-blue-400 border-2 max_Xll:mt-[15rem]"
         onClick={() => Result()}
       >
         Result

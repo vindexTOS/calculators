@@ -13,13 +13,13 @@ const Human = () => {
     ImperialToMetric,
   } = UseCalcContext()
   const style = {
-    section: ` w-[100%] h-[600px]  flex flex-col  items-center justify-center gap-2`,
-    summeryDiv: ` flex  items-center justify-between px-5  py-3 gap-5  w-[70%] border-2 text-white text-[1.4rem ] `,
-    artDiv: `  w-[70%] flex     justify-between gap-[6rem] `,
-    humanDiv: `border-2  relative py-5 w-[500px] h-[100%] flex `,
+    section: ` w-[100%] h-[600px] max_Xll:mt-[10rem] max_md:ml-[1rem]   flex flex-col   items-center justify-center gap-2`,
+    summeryDiv: ` flex  items-center justify-between px-5 max_Xll:w-[50%] max_Xll:border-0 py-3 gap-5  w-[70%] border-2 text-white text-[1.4rem ] `,
+    artDiv: `  w-[70%]    flex  max_Xll:flex-col  max_Xll:gap-0   justify-between gap-[6rem] `,
+    humanDiv: `border-2  relative py-5 w-[500px] h-[100%] max_Xll:w-[50%] max_Xll:border-0 flex    `,
     lineDiv: `absolute w-[35%] left-[50%] bottom-5 h-[93%] border-r-2 border-t-2  border-b-2 border-dashed `,
-    summerys: `flex flex-wrap wrap gap-2 `,
-    singleSummery: `border-2 w-[14rem]  h-[9rem] py-5 px-20 flex flex-col gap-5 items-center justify-center text-white `,
+    summerys: `flex flex-wrap wrap gap-2  `,
+    singleSummery: `border-2 w-[14rem]  h-[9rem] max_md:p-0 max_md:w-[7rem] py-5 px-20 max_Xll:  flex flex-col gap-5 items-center justify-center text-white `,
     icon: `w-[60px] `,
   }
 
