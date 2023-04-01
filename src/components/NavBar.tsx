@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { FcCalculator } from 'react-icons/fc'
 const NavBar = () => {
   const style = {
-    nav: `h-[90px] bg-gray-800 flex items-center justify-between px-40`,
+    nav: `h-[90px] bg-gray-800 flex items-center justify-between px-40 z-50`,
     links: `outline outline-[1px] w-[15rem] py-2 px-2 hover:bg-gray-600 hover:outline-gray-600`,
   }
   const [dropDown, setDropDown] = useState<boolean>(false)
