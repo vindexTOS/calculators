@@ -42,6 +42,11 @@ const Home = () => {
         title={`EMI calculator`}
         img={NavData.emi}
       />
+      <ImgDiv
+        img={NavData.onerep}
+        link={`one-rep-max`}
+        title={'One Rep Max Calculator'}
+      />
     </div>
   )
 }

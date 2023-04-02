@@ -12,6 +12,7 @@ const NavBar = () => {
     { link: `compauned-intrest`, title: `compound interest calculator` },
     { link: `life-expectancy`, title: `Life Expectancy calulcator` },
     { link: `one-rep-max`, title: `One Rep Max` },
+    { link: `bmi-calculator`, title: `BMI calculator` },
   ]
   const LinkDivs = () => {
     return (

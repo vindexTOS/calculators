@@ -6,6 +6,7 @@ import CompaunedIntrest from './components/CompaunedIntrest'
 import LifeExpectancy from './components/LifeExpectancy'
 import NavBar from './components/NavBar'
 import OneRepMax from './components/OneRepMax'
+import BMI from './components/BMI'
 function App() {
   return (
     <>
@@ -16,6 +17,7 @@ function App() {
         <Route path="compauned-intrest" element={<CompaunedIntrest />} />
         <Route path="life-expectancy" element={<LifeExpectancy />} />
         <Route path="one-rep-max" element={<OneRepMax />} />
+        <Route path="bmi-calculator" element={<BMI />} />
       </Routes>
     </>
   )
