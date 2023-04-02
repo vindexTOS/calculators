@@ -4,17 +4,18 @@ import { FcCalculator } from 'react-icons/fc'
 const NavBar = () => {
   const style = {
     nav: `h-[90px] bg-gray-800 flex items-center justify-between px-40 z-50`,
-    links: `outline outline-[1px] w-[15rem] py-2 px-2 hover:bg-gray-600 hover:outline-gray-600`,
+    links: `outline outline-[1px] w-[15rem]   py-2 px-2 hover:bg-gray-600 hover:outline-gray-600`,
   }
   const [dropDown, setDropDown] = useState<boolean>(false)
   const linkObj = [
     { link: `emi-calulator`, title: `EMI calculator` },
     { link: `compauned-intrest`, title: `compound interest calculator` },
     { link: `life-expectancy`, title: `Life Expectancy calulcator` },
+    { link: `one-rep-max`, title: `One Rep Max` },
   ]
   const LinkDivs = () => {
     return (
-      <div className="text-white flex flex-col absolute right-20 top-[5.6rem] bg-gray-700 h-[200px] py-10 px-5 gap-2 items-start ">
+      <div className="text-white flex flex-col absolute right-20 top-[5.6rem] bg-gray-700 h-[300px] py-10 px-5 gap-2 items-start ">
         {linkObj.map((val: any) => (
           <Link className={style.links} to={val.link}>
             {val.title}

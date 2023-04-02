@@ -5,6 +5,7 @@ import EMIcalulator from './components/EMIcalulator'
 import CompaunedIntrest from './components/CompaunedIntrest'
 import LifeExpectancy from './components/LifeExpectancy'
 import NavBar from './components/NavBar'
+import OneRepMax from './components/OneRepMax'
 function App() {
   return (
     <>
@@ -14,6 +15,7 @@ function App() {
         <Route path="emi-calulator" element={<EMIcalulator />} />
         <Route path="compauned-intrest" element={<CompaunedIntrest />} />
         <Route path="life-expectancy" element={<LifeExpectancy />} />
+        <Route path="one-rep-max" element={<OneRepMax />} />
       </Routes>
     </>
   )
