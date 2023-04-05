@@ -32,7 +32,7 @@ const BMI = () => {
 
   return (
     <section className={style.section}>
-      <div className="flex flex-col gap-2 p-5 w-[30rem] outline outlie-2 ">
+      <div className="flex flex-col gap-2 p-5 w-[30rem] max_ms:w-[25rem] outline outline-[1px] outline-blue-300 ">
         <div className="flex flex-col gap-2 justify-center">
           <p className="text-white text-[1.2rem] ">
             {' '}

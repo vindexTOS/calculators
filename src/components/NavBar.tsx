@@ -13,10 +13,11 @@ const NavBar = () => {
     { link: `life-expectancy`, title: `Life Expectancy calulcator` },
     { link: `one-rep-max`, title: `One Rep Max` },
     { link: `bmi-calculator`, title: `BMI calculator` },
+    { link: `tip-calculator`, title: `Tip Calculator` },
   ]
   const LinkDivs = () => {
     return (
-      <div className="text-white flex flex-col absolute right-20 top-[5.6rem] bg-gray-700 h-[300px] py-10 px-5 gap-2 items-start ">
+      <div className="text-white flex flex-col absolute right-20 top-[5.6rem] bg-gray-700 h-[350px] py-10 px-5 gap-2 items-start ">
         {linkObj.map((val: any) => (
           <Link className={style.links} to={val.link}>
             {val.title}

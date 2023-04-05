@@ -47,6 +47,16 @@ const Home = () => {
         link={`one-rep-max`}
         title={'One Rep Max Calculator'}
       />
+      <ImgDiv
+        link={`bmi-calculator`}
+        title={`BMI calculator`}
+        img={NavData.bmi}
+      />
+      <ImgDiv
+        link={`tip-calculator`}
+        title={`Tip Calculator`}
+        img={NavData.tipCal}
+      />
     </div>
   )
 }

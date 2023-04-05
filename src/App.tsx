@@ -7,6 +7,7 @@ import LifeExpectancy from './components/LifeExpectancy'
 import NavBar from './components/NavBar'
 import OneRepMax from './components/OneRepMax'
 import BMI from './components/BMI'
+import TipCalc from './components/TipCalc'
 function App() {
   return (
     <>
@@ -18,6 +19,7 @@ function App() {
         <Route path="life-expectancy" element={<LifeExpectancy />} />
         <Route path="one-rep-max" element={<OneRepMax />} />
         <Route path="bmi-calculator" element={<BMI />} />
+        <Route path="tip-calculator" element={<TipCalc />} />
       </Routes>
     </>
   )
